@@ -1,19 +1,24 @@
 <?php
+require('./admin_user_controller.php');
 
-$uri = parse_url(filter_input(INPUT_SERVER,'PATH_INFO'),PHP_URL_PATH);
-// Parametrit erotetaan slashilla (/)
-$parameters = explode('/',$uri);
-// Category id is first parameter so it follows after address separated with slash (/)
-$phrase = $parameters[1];
+// $uri = parse_url(filter_input(INPUT_SERVER,'PATH_INFO'),PHP_URL_PATH);
+// // Parametrit erotetaan slashilla (/)
+// $parameters = explode('/',$uri);
+// // Category id is first parameter so it follows after address separated with slash (/)
+// $phrase = $parameters[1];
 
-
-// ON VAAN copypastettu
+//'%$phrase%'
 
 try {
-    $db = openDb();
-    $sql = "select * from product where artist like '%$phrase%' or album_name like '%$phrase%'";
-    selectAsJson($db,$sql);
+    $db = createSqliteConnection('./ceramicshop.db');
+    $sql = "SELECT * FROM product WHERE product_name LIKE '%rsu%'";
+    //$sql = "SELECT * FROM product";
+    $statement = $db->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    http_response_code(200);
+    echo json_encode($results);
 }
 catch (PDOException $pdoex) {
-    returnError($pdoex);
+    echo "Tuotetta ei valitettavasti löytynyt.";
 }
