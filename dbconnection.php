@@ -7,7 +7,7 @@ function createSqliteConnection($filename) {
 
     }catch(PDOException $error){
         http_response_code(505);
-        echo $error->getMessage();
+        echo "Palvelu ei ole käytettävissä.";
     }
 
     return null;
