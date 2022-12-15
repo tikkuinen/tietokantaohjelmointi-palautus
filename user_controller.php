@@ -20,3 +20,20 @@ function registerUser($uname, $pw) {
         echo $error->getMessage();
     }
 }
+
+// tarkistaa onko käyttäjän tiedot oikein, palauttaa null jos käyttäjää ei ole
+function checkUser($uname, $pw) {
+    $db = createSqliteConnection('./ceramicshop.db');
+    // etsii taulusta onko tuolla käyttäjänimellä olemassa salasanaa, jos on, niin on validi
+    $sql = "SELECT passwd FROM user WHERE username=?";
+    $statement = $db->prepare($sql);
+    $statement->execute(array($uname));
+    // jos ei löydy niin tulee virhe, jos käyttäjää ei ole koska ei ole virheenhallintaa
+    $hashed = $statement->fetchColumn();
+
+    if(isset($hashed)){
+        return password_verify($pw, $hashed) ? $uname : null;
+    }
+
+    return null;
+}
