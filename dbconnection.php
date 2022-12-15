@@ -12,3 +12,9 @@ function createSqliteConnection($filename) {
 
     return null;
 }
+
+// palauttaa edellisen lisätyn id:n, tämä tuotteen lisäystä varten
+function executeInsert(object $db,string $sql): int {
+    $query = $db->query($sql);  
+    return $db->lastInsertId();
+  }
