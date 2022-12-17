@@ -8,7 +8,7 @@ CREATE TABLE customer (
     tel VARCHAR(15) NOT NULL
 )
 
-CREATE TABLE `order` (
+CREATE TABLE orders (
     order_no INTEGER PRIMARY KEY NOT NULL,
     customer_id INTEGER NOT NULL,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -20,7 +20,7 @@ CREATE TABLE order_row (
     order_no INTEGER NOT NULL,
     product_no INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
-    FOREIGN KEY (order_no) REFERENCES `order`
+    FOREIGN KEY (order_no) REFERENCES orders
 )
 
 CREATE TABLE product (
