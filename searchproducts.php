@@ -9,8 +9,10 @@ require('./admin_user_controller.php');
 
 //'%$phrase%'
 
+// testaa toimiiko selaimella kun osoitteeseen laittaa sen osan
+
 try {
-    $db = createSqliteConnection('./ceramicshop.db');
+    $db = createSqliteConnection();
     $sql = "SELECT * FROM product WHERE product_name LIKE '%rsu%'";
     //$sql = "SELECT * FROM product";
     $statement = $db->prepare($sql);

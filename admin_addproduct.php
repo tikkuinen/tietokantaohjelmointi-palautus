@@ -14,20 +14,16 @@ $input = json_decode(file_get_contents('php://input'));
 $name = filter_var($input->name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $price = filter_var($input->price, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-// TOIMII, mutta ei lisaa tuotenumeroa, ja ei laita desimaalia kai oikein
-
 // tehdään se lisäys
 try {
-    $db = createSqliteConnection('./ceramicshop.db');
+    $db = createSqliteConnection();
 
-    $sql = "INSERT INTO product (product_name, price) VALUES ('$name', '$price')";
-    executeInsert($db, $sql);
-    $data = array('product_no'=> $db ->lastInsertId(), 'name' => $name, 'price' => $price);
-    echo json_encode($data);
+    $sql = "INSERT INTO product (product_name, price) VALUES (?, ?)";
+    $statement = $db->prepare($sql);
+    $statement->execute(array($name, $price));
 
-    } catch (PDOException $pdoex) {
-        http_response_code(500);
-        echo "Tuotteen lisäys ei onnistunut.";
-        // mitä exit tekee
-        exit;
-    }
+} catch (PDOException $pdoex) {
+    http_response_code(500);
+    echo "Tuotteen lisäys ei onnistunut.";
+    return;
+}
