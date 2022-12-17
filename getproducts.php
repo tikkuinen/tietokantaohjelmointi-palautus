@@ -1,6 +1,5 @@
 <?php
 // headers ekana
-//tarviiko sessionia? ei kai?
 require('./admin_user_controller.php');
 
 // haetaan kaikkien tuotteiden nimet ja hinnat tietokannasta

@@ -3,7 +3,7 @@
 session_start();
 require('./admin_user_controller.php');
 
-//haetaan tieto json-muodossa ja dekoodataan ja tallennetaan muuttujaan
+// haetaan tieto json-muodossa ja dekoodataan ja tallennetaan muuttujaan
 $body = file_get_contents('php://input');
 $user = json_decode($body);
 
@@ -11,11 +11,10 @@ $user = json_decode($body);
 $uname = $user->uname;
 $pw = $user->pw;
 
-//onko niitä syötteitä edes asetettu, onko jsonisse kenttää uname tai pw
+// tarkistaa onko niitä syötteitä edes asetettu, eli onko jsonissa kenttää uname tai pw
 if(!isset($uname) || !isset($pw)){
     http_response_code(400);
     echo "Virhe, käyttäjätunnus tai salasana puuttuu!";
-    //tähän lopetetaan, kun ei saatu mitään järkevää aikaiseksi
     return;
 }
 
@@ -26,8 +25,7 @@ if(!isset($uname) || !isset($pw)){
 
 registerUser($uname, $pw);
 
-
 $_SESSION['username'] = $uname;
 
 http_response_code(200);
-echo "User $uname register succesful";
+echo "Käyttäjän $uname rekisteröinti onnistui!";

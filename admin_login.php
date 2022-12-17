@@ -1,7 +1,7 @@
 <?php
 // headers ekana
 session_start();
-require('./user_controller.php');
+require('./admin_user_controller.php');
 
 // jos sessio on jo olemassa tuolla nimellä, niin palautetaan nimi, ja lopetetaan jotta ei kirjaudu uudestaan
 if(isset($_SESSION['username'])){
@@ -12,7 +12,7 @@ if(isset($_SESSION['username'])){
 
 if(!isset($_POST['uname']) || !isset($_POST['pw'])){
     http_response_code(401);
-    echo "Käyttäjätunnus ei täsmää, palataan pois";
+    echo "Anna käyttäjätunnus ja salasana.";
     return;
 }
 

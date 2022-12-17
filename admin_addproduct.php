@@ -1,24 +1,23 @@
 <?php
 // headers ekana
-// session_start();
-//require('./admin_user_controller.php');
-require('./dbconnection.php');
+session_start();
+require('./admin_user_controller.php');
+
 // jos sessio ei ole päällä eli jos ei ole käyttäjänimeä siellä, ei päästetä mihkään
-// if(!isset($_SESSION['username'])){
-//     http_response_code(403);
-//     echo "Ei tarvittavia oikeuksia.";
-//     return;
-// }
+if(!isset($_SESSION['username'])){
+    http_response_code(403);
+    echo "Ei tarvittavia oikeuksia.";
+    return;
+}
+
 //haetaan lisättävät tiedot
 $input = json_decode(file_get_contents('php://input'));
 
 // pysäytetään suoritus, jos tietoja ei ole annettu
 if(!isset($input)) {
-    //var_dump($input);
     http_response_code(400);
     echo "Syötetyt tiedot ovat puutteelliset.";
     return;
-    
 }
 
 // siivotaan lisättävät tiedot ennen kuin ne lisätään

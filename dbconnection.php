@@ -13,8 +13,7 @@ function createSqliteConnection() {
     return null;
 }
 
-// TÄTÄ EI EHKÄ TARVII
-// palauttaa edellisen lisätyn id:n, tämä tuotteen lisäystä varten
+// palauttaa edellisen lisätyn id:n, tämä tilauksen tallentamista varten
 function executeInsert(object $db,string $sql): int {
     $query = $db->query($sql);  
     return $db->lastInsertId();
