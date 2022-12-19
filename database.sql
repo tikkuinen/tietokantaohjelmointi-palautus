@@ -39,3 +39,8 @@ INSERT INTO product(product_name, price) VALUES
 ("Norsu", 6.90),
 ("Sika", 4.90),
 ("Kirahvi", 9.90)
+
+INSERT INTO customer(firstname,lastname,address,postcode,city,tel) VALUES 
+("Keijo", "Kirahvi", "Keijotie 4", "40420", "Jyväskylä", "0503247564")
+
+INSERT INTO user(username, passwd) VALUES ("Tiia", "salasana")

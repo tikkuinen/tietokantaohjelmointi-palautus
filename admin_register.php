@@ -1,7 +1,7 @@
 <?php
-// headers ekana
+require('headers.php');
 session_start();
-require('./admin_user_controller.php');
+require('admin_user_controller.php');
 
 // haetaan tieto json-muodossa ja dekoodataan ja tallennetaan muuttujaan
 $body = file_get_contents('php://input');

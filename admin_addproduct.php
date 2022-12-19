@@ -1,7 +1,7 @@
 <?php
-// headers ekana
+require('headers.php');
 session_start();
-require('./admin_user_controller.php');
+require('admin_user_controller.php');
 
 // jos sessio ei ole päällä eli jos ei ole käyttäjänimeä siellä, ei päästetä mihkään
 if(!isset($_SESSION['username'])){
@@ -26,7 +26,7 @@ $price = filter_var($input->price, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 // lisätään tiedot tietokantaan
 try {
-    $db = createSqliteConnection();
+    $db = createSqliteConnection('./ceramics.db');
 
     $sql = "INSERT INTO product (product_name, price) VALUES (?, ?)";
     $statement = $db->prepare($sql);

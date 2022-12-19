@@ -1,10 +1,10 @@
 <?php
-require('./dbconnection.php');
+require('dbconnection.php');
 
 //Rekisteröinti
 function registerUser($uname, $pw) {
     try {
-        $db = createSqliteConnection();
+        $db = createSqliteConnection('./ceramics.db');
 
         $pw = password_hash($pw, PASSWORD_DEFAULT);
     
@@ -18,7 +18,7 @@ function registerUser($uname, $pw) {
 
 // tarkistaa onko käyttäjän tiedot oikein, palauttaa null jos käyttäjää ei ole
 function checkUser($uname, $pw) {
-    $db = createSqliteConnection();
+    $db = createSqliteConnection('./ceramics.db');
     // etsii taulusta onko tuolla käyttäjänimellä olemassa salasanaa, jos on, niin on validi
     $sql = "SELECT passwd FROM user WHERE username=?";
     $statement = $db->prepare($sql);

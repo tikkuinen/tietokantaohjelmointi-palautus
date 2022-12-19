@@ -1,5 +1,6 @@
 <?php
-require('./admin_user_controller.php');
+require('headers.php');
+require('admin_user_controller.php');
 
 $uri = parse_url(filter_input(INPUT_SERVER,'PATH_INFO'),PHP_URL_PATH);
 // parametrit erotetaan osoiterivistä
@@ -10,7 +11,7 @@ $phrase = $parameters[1];
 // Haku toimii kun selaimessa lisää osoitteeseen haettavan parametrin.
 
 try {
-    $db = createSqliteConnection();
+    $db = createSqliteConnection('./ceramics.db');
 
     $sql = "SELECT * FROM product WHERE product_name LIKE '%$phrase%'";
     $statement = $db->prepare($sql);

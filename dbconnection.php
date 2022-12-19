@@ -1,9 +1,10 @@
 <?php
 
-function createSqliteConnection() {
+function createSqliteConnection($filename) {
     try {
-        $dbcon = new PDO("sqlite:".'./ceramicshop.db');
+        $dbcon = new PDO("sqlite:".$filename);
         return $dbcon;
+        echo "toimii";
 
     }catch(PDOException $error){
         http_response_code(505);

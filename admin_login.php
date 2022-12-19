@@ -1,7 +1,7 @@
 <?php
-// headers ekana
+require('headers.php');
 session_start();
-require('./admin_user_controller.php');
+require('admin_user_controller.php');
 
 // jos sessio on jo olemassa tuolla nimellä, niin palautetaan nimi, ja lopetetaan jotta ei kirjaudu uudestaan
 if(isset($_SESSION['username'])){

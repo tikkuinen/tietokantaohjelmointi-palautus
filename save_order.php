@@ -1,5 +1,6 @@
 <?php
-require('./admin_user_controller.php');
+require('headers.php');
+require('admin_user_controller.php');
 
 $db = null;
 
@@ -23,7 +24,7 @@ $tel = filter_var($input->tel,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 // $cart = $input->cart;
 
 try {
-    $db = createSqliteConnection();
+    $db = createSqliteConnection('./ceramics.db');
     $db->beginTransaction();
 
     // lisätään asiakastiedot

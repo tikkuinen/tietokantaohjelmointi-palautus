@@ -1,10 +1,10 @@
 <?php
-// headers ekana
-require('./admin_user_controller.php');
+require('headers.php');
+require('admin_user_controller.php');
 
 // haetaan kaikkien tuotteiden nimet ja hinnat tietokannasta
 try {
-    $db = createSqliteConnection();
+    $db = createSqliteConnection('./ceramics.db');
     $sql = "SELECT * FROM product";
     // valmistellaan haku ja kutsutaan product-taulusta
     $statement = $db->prepare($sql);
